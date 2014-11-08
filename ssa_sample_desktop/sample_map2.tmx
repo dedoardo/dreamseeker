@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="minicular" tilewidth="16" tileheight="16">
+  <image source="minicular.png" width="128" height="128"/>
+  <tile id="32">
+   <objectgroup draworder="index">
+    <object x="0" y="-4" width="15" height="15">
+     <ellipse/>
+    </object>
+    <object x="15" y="14" width="11" height="15">
+     <ellipse/>
+    </object>
+    <object x="9" y="12">
+     <ellipse/>
+    </object>
+    <object x="-2" y="-38" width="48" height="92">
+     <ellipse/>
+    </object>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <layer name="layer1" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzbERACAMAzGvBWH/ucgE0ECn4jv7VEnq0OpGNy+7138ul8vlcrlcLpfL5f51NyuHzvU=
+  </data>
+ </layer>
+ <layer name="layer2" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBaNgFICAIBALDYC9kkAsRQVzQO5nBmIWKE3ILyB7lahgrxGJ6hWpZC8pgBuIGaGYB486ZgbUMMTFJiQPYzOiYWz6mbGooxcGAO0qAcY=
+  </data>
+ </layer>
+ <objectgroup name="Obj1">
+  <object x="144.5" y="400" width="79.5" height="16"/>
+  <object x="336" y="368" width="32" height="80.5"/>
+  <object x="-0.5" y="448" width="480.5" height="33.5"/>
+ </objectgroup>
+</map>
