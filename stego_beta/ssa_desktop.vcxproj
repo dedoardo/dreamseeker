@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{90BE3A68-F430-45A5-B190-7E90FD438FB7}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ssa_desktop</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>$(ProjectName)_d</TargetName>
+    <OutDir>$(SolutionDir)\..\bin\x86\</OutDir>
+    <IntDir>$(SolutionDir)\..\..\output\ssa_desktop\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\..\bin\x86\</OutDir>
+    <IntDir>$(SolutionDir)\..\..\output\ssa_desktop\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)dev_branch\include;$(SolutionDir)..\dependencies;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/W4 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\edoardo\Documents\stegosaurus_01\msvc\dev_branch\include;C:\Users\edoardo\Documents\stegosaurus_01\dependencies;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="dev_branch\include\core\ssa_bag.hpp" />
+    <ClInclude Include="dev_branch\include\core\ssa_core.hpp" />
+    <ClInclude Include="dev_branch\include\core\ssa_entry_point.hpp" />
+    <ClInclude Include="dev_branch\include\core\ssa_math.hpp" />
+    <ClInclude Include="dev_branch\include\core\ssa_platform.hpp" />
+    <ClInclude Include="dev_branch\include\entity\ssa_component.hpp" />
+    <ClInclude Include="dev_branch\include\entity\ssa_component_factory.hpp" />
+    <ClInclude Include="dev_branch\include\entity\ssa_entity.hpp" />
+    <ClInclude Include="dev_branch\include\entity\ssa_entity_factory.hpp" />
+    <ClInclude Include="dev_branch\include\entity\ssa_entity_framework.hpp" />
+    <ClInclude Include="dev_branch\include\entity\ssa_entity_framework_api.hpp" />
+    <ClInclude Include="dev_branch\include\entity\ssa_entity_handle.hpp" />
+    <ClInclude Include="dev_branch\include\entity\ssa_system.hpp" />
+    <ClInclude Include="dev_branch\include\entity\ssa_system_looper.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\2d\ssa_2d.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\2d\ssa_renderable2d.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\2d\ssa_renderer2d.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\2d\ssa_sprite.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\2d\ssa_transformable2d.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\effects\ssa_blur_effect.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\effects\ssa_effects.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\effects\ssa_pp_horizontal_blur_pass.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\effects\ssa_pp_vertical_blur_pass.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_blender.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_buffer.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_commander.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_commander_internals.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_commander_params.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_commander_utils.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_common_vertex_formats.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_fullscreen_quad.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_graphics.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_post_process_effect.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_post_process_pass.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_renderer.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_render_device.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_resource.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_resource_batch.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_resource_factory.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_sampler.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_shader.hpp" />
+    <ClInclude Include="dev_branch\include\graphics\ssa_texture.hpp" />
+    <ClInclude Include="dev_branch\include\input\ssa_context.hpp" />
+    <ClInclude Include="dev_branch\include\input\ssa_control.hpp" />
+    <ClInclude Include="dev_branch\include\input\ssa_device.hpp" />
+    <ClInclude Include="dev_branch\include\input\ssa_dispatcher.hpp" />
+    <ClInclude Include="dev_branch\include\input\ssa_hardware_layer.hpp" />
+    <ClInclude Include="dev_branch\include\input\ssa_input.hpp" />
+    <ClInclude Include="dev_branch\include\input\ssa_platform_device.hpp" />
+    <ClInclude Include="dev_branch\include\input\ssa_types.hpp" />
+    <ClInclude Include="dev_branch\include\input\ssa_windows_device.hpp" />
+    <ClInclude Include="dev_branch\include\input\ssa_windows_hardware_layer.hpp" />
+    <ClInclude Include="dev_branch\include\input\ssa_winrt_device.hpp" />
+    <ClInclude Include="dev_branch\include\input\ssa_winrt_hardware_layer.hpp" />
+    <ClInclude Include="dev_branch\include\stegosaurus.hpp" />
+    <ClInclude Include="dev_branch\include\utility\ssa_loaders.hpp" />
+    <ClInclude Include="dev_branch\include\window\ssa_window.hpp" />
+    <ClInclude Include="dev_branch\include\window\ssa_window_internal.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dev_branch\src\core\ssa_bag.cpp" />
+    <ClCompile Include="dev_branch\src\core\ssa_entry_point.cpp" />
+    <ClCompile Include="dev_branch\src\entity\ssa_component_factory.cpp" />
+    <ClCompile Include="dev_branch\src\entity\ssa_entity.cpp" />
+    <ClCompile Include="dev_branch\src\entity\ssa_entity_factory.cpp" />
+    <ClCompile Include="dev_branch\src\entity\ssa_entity_framework_api.cpp" />
+    <ClCompile Include="dev_branch\src\entity\ssa_entity_handle.cpp" />
+    <ClCompile Include="dev_branch\src\entity\ssa_system_looper.cpp" />
+    <ClCompile Include="dev_branch\src\graphics\2d\ssa_renderable2d.cpp" />
+    <ClCompile Include="dev_branch\src\graphics\2d\ssa_renderer2d.cpp" />
+    <ClCompile Include="dev_branch\src\graphics\2d\ssa_sprite.cpp" />
+    <ClCompile Include="dev_branch\src\graphics\effects\ssa_blur_effect.cpp" />
+    <ClCompile Include="dev_branch\src\graphics\effects\ssa_pp_horizontal_blur_pass.cpp" />
+    <ClCompile Include="dev_branch\src\graphics\effects\ssa_pp_vertical_blur_pass.cpp" />
+    <ClCompile Include="dev_branch\src\graphics\ssa_commander.cpp" />
+    <ClCompile Include="dev_branch\src\graphics\ssa_fullscreen_quad.cpp" />
+    <ClCompile Include="dev_branch\src\graphics\ssa_renderer.cpp" />
+    <ClCompile Include="dev_branch\src\graphics\ssa_render_device.cpp" />
+    <ClCompile Include="dev_branch\src\graphics\ssa_resource_factory.cpp" />
+    <ClCompile Include="dev_branch\src\input\ssa_context.cpp" />
+    <ClCompile Include="dev_branch\src\input\ssa_device.cpp" />
+    <ClCompile Include="dev_branch\src\input\ssa_dispatcher.cpp" />
+    <ClCompile Include="dev_branch\src\input\ssa_hardware_layer.cpp" />
+    <ClCompile Include="dev_branch\src\input\ssa_windows_device.cpp" />
+    <ClCompile Include="dev_branch\src\input\ssa_windows_hardware_layer.cpp" />
+    <ClCompile Include="dev_branch\src\input\ssa_winrt_device.cpp" />
+    <ClCompile Include="dev_branch\src\input\ssa_winrt_hardware_layer.cpp" />
+    <ClCompile Include="dev_branch\src\utility\ssa_loaders.cpp" />
+    <ClCompile Include="dev_branch\src\window\ssa_window_windows.cpp" />
+    <ClCompile Include="dev_branch\src\window\ssa_window_windows_phone.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="msvc.licenseheader" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
