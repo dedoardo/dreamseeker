@@ -33,15 +33,15 @@ void GameScreen::on_key_down(Window::Event, Window&, unsigned int p_code, unsign
 	KeyCode code = static_cast<KeyCode>(p_code);
 	if (code == KeyCode::LeftArrow)
 	{
-		m_physics.player_input.x = -2.f;
+		m_physics.player_input.x = -2.5f;
 	}
 	else if (code == KeyCode::RightArrow)
 	{
-		m_physics.player_input.x = 2.f;
+		m_physics.player_input.x = 2.5f;
 	}
 	else if (code == KeyCode::UpArrow)
 	{
-		m_physics.player_input.y = -5.f;
+		m_physics.player_input.y = -7.f;
 	}
 }
 
@@ -55,6 +55,7 @@ m_player_emitter(100)
 	m_particle_texture = nullptr;
 	m_base_blur = nullptr;
 	m_blender = nullptr;
+	m_map_texture = nullptr;
 }
 
 GameScreen::~GameScreen()
@@ -63,6 +64,7 @@ GameScreen::~GameScreen()
 	delete m_particle_texture;
 
 	delete m_base_blur;
+	delete m_map_texture;
 }
 
 void GameScreen::on_activation(GameContext& p_context)
@@ -97,7 +99,7 @@ void GameScreen::on_activation(GameContext& p_context)
 
 	m_player_component.size = float2(30.f, 30.f);
 	m_player_component.velocity = float2(0.f, 0.f);
-	m_physics.set_gravity(5.f);
+	m_physics.set_gravity(15.f);
 	m_physics.set_player(&m_player_component);
 	m_physics.set_active(true);
 
@@ -117,7 +119,7 @@ void GameScreen::on_activation(GameContext& p_context)
 	m_player_sprite.set_rect(30.f, 30.f);
 	m_player_sprite.set_color(float4(0.4f, 0.1f, 0.2f, 1.f));
 
-	if (!load_map("sample_map6.tmx", m_map))
+	if (!load_map("sample_map7.tmx", m_map))
 		std::cout << "Failed to load map " << std::endl;
 
 	m_player_component.position = m_map.spawn;
@@ -173,8 +175,8 @@ void GameScreen::on_activation(GameContext& p_context)
 
 				m_sprite_buffer[buffer_index].set_texture(m_texture_atlases[texture_index]);
 
-				unsigned int x = (new_id * 16) % m_map.tile_sets[texture_index].width;
-				unsigned int y = (new_id * 16) / m_map.tile_sets[texture_index].height * 16;
+				unsigned int x = ((new_id) * 16) % m_map.tile_sets[texture_index].width;
+				unsigned int y = ((new_id) * 16) / m_map.tile_sets[texture_index].width * 16;
 				m_sprite_buffer[buffer_index].set_texture_rect(x, y, 16, 16);
 
 				m_sprite_buffer[buffer_index].set_rect(16, 16);
@@ -189,8 +191,22 @@ void GameScreen::on_activation(GameContext& p_context)
 		}
 	}
 
+	ssa::loaded_data texture_data;
+	unsigned long width, height;
+	if (!ssa::load_png("assets/map.png", texture_data, width, height))
+		std::cout << "Failed to load map texture" << std::endl;
+
+	m_map_texture = new Texture(p_context.render_device);
+	if (!m_map_texture->create(width, height, ssa::Format::RGBA8Unorm, false, &texture_data[0]))
+		std::cout << "Failed to create map texture" << std::endl;
+
 	m_base_blur = new BlurEffect(p_context.render_device);
 	//p_context.renderer2D.push_effect(*m_base_blur);
+
+	m_background.init(p_context.render_device, p_context.renderer2D);
+	m_fragment_manager.init(m_map, p_context.render_device, p_context.renderer2D);
+
+	m_map_sprite.set_texture(*m_map_texture);
 }
 
 void GameScreen::on_deactivation(GameContext& p_context)
@@ -200,7 +216,6 @@ void GameScreen::on_deactivation(GameContext& p_context)
 
 void GameScreen::update(GameContext& p_context, unsigned int p_milliseconds, bool p_is_hidden)
 {
-
 	m_player_emitter.position = m_player_sprite.position;
 
 	m_physics.set_delta_time(p_milliseconds);
@@ -220,11 +235,18 @@ void GameScreen::update(GameContext& p_context, unsigned int p_milliseconds, boo
 		m_player_component.position.y = (m_map.height - 1) * 16;
 
 	m_player_emitter.update(p_milliseconds);
+	m_fragment_manager.update(m_player_component.position, ssa::float2(15,15), p_milliseconds);
+	m_background.update(p_milliseconds);
+
+	if (m_fragment_manager.is_over())
+		exit(1);
 }
 
 
 void GameScreen::render(GameContext& p_context, unsigned int p_milliseconds)
 {
+	m_background.render();
+
 	float displacement_x{ 0 };
 	float displacement_y{ 0 };
 
@@ -334,7 +356,10 @@ void GameScreen::render(GameContext& p_context, unsigned int p_milliseconds)
 
 	p_context.renderer2D.render(m_player_sprite);
 
+	m_map_sprite.position += ssa::float2(displacement_x, displacement_y);
+	p_context.renderer2D.render(m_map_sprite);
 	p_context.renderer2D.end();
+	m_map_sprite.position -= ssa::float2(displacement_x, displacement_y);
 
 	for (auto& sprite : m_sprite_buffer)
 	{
@@ -342,5 +367,7 @@ void GameScreen::render(GameContext& p_context, unsigned int p_milliseconds)
 		sprite.position.x -= displacement_x;
 	}
 
-	//m_particle_system.render(p_milliseconds);
+	m_fragment_manager.render(ssa::float2(displacement_x, displacement_y));
+
+	////m_particle_system.render(p_milliseconds);
 }

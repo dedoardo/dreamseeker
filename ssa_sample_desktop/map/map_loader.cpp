@@ -106,11 +106,14 @@ bool load_map(const std::string& p_filename, Map& p_map)
 		{
 			for (xml_node<>* object_node = next_node->first_node("object"); object_node; object_node = object_node->next_sibling())
 			{
+				int fragment{ -1 };
 				Object object;
 				TRY_ASSIGN_ATTRIBUTE_FLOAT(object.position.x, object_node, "x");
 				TRY_ASSIGN_ATTRIBUTE_FLOAT(object.position.y, object_node, "y");
 				TRY_ASSIGN_ATTRIBUTE_FLOAT(object.size.x, object_node, "width");
 				TRY_ASSIGN_ATTRIBUTE_FLOAT(object.size.y, object_node, "height");
+
+				object.position.y += 30;
 			
 				xml_node<>* properties_root = object_node->first_node("properties");
 				if (properties_root != nullptr)
@@ -123,12 +126,24 @@ bool load_map(const std::string& p_filename, Map& p_map)
 
 						if (new_property.first == "Spawn")
 							p_map.spawn = object.position;
+						if (new_property.first == "Fragment")
+							fragment = std::stoi(new_property.second);
 
 						object.properties.push_back(new_property);
 					}
 				}
 
-				p_map.objects.push_back(object);
+				if (fragment == -1)
+					p_map.objects.push_back(object);
+				else
+				{
+					InteractiveObject f;
+					f.position = object.position;
+					f.properties = object.properties;
+					f.size = object.size;
+					f.fragment = fragment;
+					p_map.fragments.push_back(f);
+				}
 			}
 		}
 		// Ignored nodes

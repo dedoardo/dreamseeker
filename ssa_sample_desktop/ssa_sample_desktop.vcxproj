@@ -51,12 +51,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\edoardo\Documents\stegosaurus_01\dependencies;C:\Users\edoardo\Documents\stegosaurus_01\msvc\dev_branch\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\edoardo\Documents\stegosaurus_01\dependencies;C:\Users\edoardo\Documents\dreamseeker\stego_beta\dev_branch\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\edoardo\Documents\stegosaurus_01\bin\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\edoardo\Documents\dreamseeker\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -67,14 +67,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\edoardo\Documents\stegosaurus_01\dependencies;C:\Users\edoardo\Documents\stegosaurus_01\msvc\dev_branch\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\edoardo\Documents\stegosaurus_01\dependencies;C:\Users\edoardo\Documents\dreamseeker\stego_beta\dev_branch\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Users\edoardo\Documents\stegosaurus_01\bin\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\edoardo\Documents\dreamseeker\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -82,6 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game\AABB.cpp" />
+    <ClCompile Include="game\animated_sprite.cpp" />
+    <ClCompile Include="game\background.cpp" />
+    <ClCompile Include="game\fragment_manager.cpp" />
     <ClCompile Include="game\physics_system.cpp" />
     <ClCompile Include="map\map_loader.cpp" />
     <ClCompile Include="particles\particle_emitter.cpp" />
@@ -91,6 +94,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game\AABB.hpp" />
+    <ClInclude Include="game\animated_sprite.hpp" />
+    <ClInclude Include="game\background.hpp" />
+    <ClInclude Include="game\fragment_manager.hpp" />
     <ClInclude Include="game\player_component.hpp" />
     <ClInclude Include="game\physics_system.hpp" />
     <ClInclude Include="map\map_loader.hpp" />

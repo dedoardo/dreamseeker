@@ -11,6 +11,11 @@ struct Object
 	std::vector<std::pair<std::string, std::string>> properties;
 };
 
+struct InteractiveObject : Object
+{
+	unsigned int fragment;
+};
+
 struct TileSet
 {
 	std::string     name;
@@ -36,6 +41,7 @@ struct Map
 	// Objects are global, not linked to single layer,
 	// They are only shapes used for collision detection
 	std::vector<Object> objects;
+	std::vector<InteractiveObject> fragments;
 
 	std::vector<TileLayer> tile_layers;
 	std::vector<TileSet> tile_sets;

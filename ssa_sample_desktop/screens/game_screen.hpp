@@ -7,6 +7,8 @@
 #include "../game/physics_system.hpp"
 #include "../particles/particle_emitter.hpp"
 #include "../particles/particle_system.hpp"
+#include "../game/fragment_manager.hpp"
+#include "../game/background.hpp"
 
 #include <stegosaurus.hpp>
 #include <graphics/effects/ssa_blur_effect.hpp>
@@ -43,4 +45,8 @@ private :
 	Texture*					m_player_texture;
 	BlurEffect*					m_base_blur;
 	Blender*					m_blender;
+	Background					m_background;
+	FragmentManager				m_fragment_manager;
+	Texture*					m_map_texture;
+	Sprite						m_map_sprite;
 };
